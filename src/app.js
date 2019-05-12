@@ -3,6 +3,7 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
+const errorHandler = require('./error-handler')
 const logger = require('./logger')
 const bookmarkRouter = require('./bookmark/bookmark-router')
 const { NODE_ENV } = require('./config')
@@ -45,4 +46,5 @@ app.use(function errorHandler(error, req, res, next) {
     }
     res.status(500).json(response)
 })
+app.use(errorHandler)
 module.exports = app
